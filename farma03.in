@@ -1,0 +1,11 @@
+# droga cantidad
+DROGAS
+1: 15
+2: 20
+3: 45
+
+# remedio droga cantidad
+REMEDIOS
+1: 1 15, 2 20
+2: 3 45
+3: 2 10

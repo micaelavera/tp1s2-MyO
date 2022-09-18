@@ -1,0 +1,14 @@
+# Lineas en blanco o comenzadas con "#" deben saltearse
+
+DROGAS
+# Droga: cantidad necesaria
+d:20
+2: 43
+
+H3: 90
+
+REMEDIOS
+# Remedio: droga cantida]
+R1: d 10, 2 40
+r3: d 20, 2 33, H3 29
+55: H3 20, 2 44
