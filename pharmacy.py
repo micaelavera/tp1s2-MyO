@@ -31,25 +31,26 @@ def readTxtPharmacy(file):
 
             for line in lines:
                 if 'REMEDIOS' in line:
-                    passDrugs = True
+                  passDrugs = True
+                  
                 if not '#' in line and ':' in line and passDrugs == False and not 'DROGAS' in line:
-                    linea = line.rstrip('\n')
-                    split = linea.split(":")
-                    drogas.append(split[0])
-                    cant_necesaria.append(float(split[1].strip()))
+                  linea = line.rstrip('\n')
+                  split = linea.split(":")
+                  drogas.append(split[0])
+                  cant_necesaria.append(float(split[1].strip()))
                 else:
                     if not '#' in line and passDrugs == True and not 'REMEDIOS' in line:
-                        linea = line.rstrip('\n')
-                        split = linea.split(":")
-                        remedio = split[0]
-                        remedios.append(remedio)
-                        drugs = split[1].rstrip('\n')
-                        split2 = drugs.split(",")
-                        for cantDrug in split2:
-                            linea3 = cantDrug.strip()
-                            split3 = linea3.split(" ")
-                            A = np.array([remedio, split3[0], float(split3[1])])
-                            tupla.append(A) 
+                      linea = line.rstrip('\n')
+                      split = linea.split(":")
+                      remedio = split[0]
+                      remedios.append(remedio)
+                      drugs = split[1].rstrip('\n')
+                      split2 = drugs.split(",")
+                      for cantDrug in split2:
+                        linea3 = cantDrug.strip()
+                        split3 = linea3.split(" ")
+                        A = np.array([remedio, split3[0], float(split3[1])])
+                        tupla.append(A) 
                           
             cantidades = np.zeros((len(remedios),len(drogas))).astype(float)
             for i in range(len(tupla)):
@@ -67,13 +68,13 @@ def readTxtPharmacy(file):
 
 def optimize(cantidades):
     for i in range(len(remedios)):
-        r[i] = model.addVar(vtype='C', name='%s'%(remedios[i]))
+      r[i] = model.addVar(vtype='C', name='%s'%(remedios[i]))
 
     for j in range(len(drogas)):
-        constraints.append(model.addCons(sum(r[t]*cantidades[t][j] for t in range(len(remedios))) >= cant_necesaria[j], name="restric", separate=False, modifiable = True))  
+      constraints.append(model.addCons(sum(r[t]*cantidades[t][j] for t in range(len(remedios))) >= cant_necesaria[j], name="restric", separate=False, modifiable = True))  
 
     for t in range(len(remedios)):
-        model.addCons(r[t] >= 0)
+      model.addCons(r[t] >= 0)
     
 
     model.setObjective(sum(r[i] for i in range(len(remedios))), "minimize")
@@ -87,32 +88,34 @@ def optimize(cantidades):
 def readTxtRemedio(file):
     try:
         with open(file, 'r') as archivo:
-                print("\nLeyendo archivo " + file + "...\n")
-                lines = archivo.readlines()
-                passDrugs = False
-                tupla2 = []
-                for line in lines:
-                    if 'REMEDIOS' in line:
-                        passDrugs = True
-                    if not '#' in line and passDrugs == True and not 'REMEDIOS' in line:
-                            linea = line.rstrip('\n')
-                            split = linea.split(":")
-                            remedio = split[0]
-                            remedios2.append(remedio)
-                            drugs = split[1].rstrip('\n')
-                            split2 = drugs.split(",")
-                            for cantDrug in split2:
-                                linea3 = cantDrug.strip()
-                                split3 = linea3.split(" ")
-                                A = np.array([remedio, split3[0], float(split3[1])])
-                                tupla2.append(A) 
-                cantidades2 = np.zeros((len(remedios2),len(drogas))).astype(float)
-                for i in range(len(tupla2)):
-                  cantidades2[remedios2.index(tupla2[i][0])][drogas.index(tupla2[i][1])] = tupla2[i][2] # m remedios (filas) y n drogas (columnas)
+            print("\nLeyendo archivo " + file + "...\n")
+            lines = archivo.readlines()
+            passDrugs = False
+            tupla2 = []
+            for line in lines:
+              if 'REMEDIOS' in line:
+                passDrugs = True
+
+              if not '#' in line and passDrugs == True and not 'REMEDIOS' in line:
+                linea = line.rstrip('\n')
+                split = linea.split(":")
+                remedio = split[0]
+                remedios2.append(remedio)
+                drugs = split[1].rstrip('\n')
+                split2 = drugs.split(",")
+                for cantDrug in split2:
+                  linea3 = cantDrug.strip()
+                  split3 = linea3.split(" ")
+                  A = np.array([remedio, split3[0], float(split3[1])])
+                  tupla2.append(A) 
+            
+            cantidades2 = np.zeros((len(remedios2),len(drogas))).astype(float)
+            for i in range(len(tupla2)):
+              cantidades2[remedios2.index(tupla2[i][0])][drogas.index(tupla2[i][1])] = tupla2[i][2] # m remedios (filas) y n drogas (columnas)
                       
-                print("Se agregan nuevos remedios...\n")
-                printRemedies(tupla2)
-                optimizeNewRemedy(cantidades2)
+            print("Se agregan nuevos remedios...\n")
+            printRemedies(tupla2)
+            optimizeNewRemedy(cantidades2)
 
     except IOError:
         print ("No existe el archivo", file)
@@ -128,7 +131,7 @@ def optimizeNewRemedy(cantidades2):
 
     for t in range(len(constraints)):
       for i in range(len(remedios2)):
-          model.addConsCoeff(constraints[t],r[i+tamanio],cantidades2[i][t])
+        model.addConsCoeff(constraints[t],r[i+tamanio],cantidades2[i][t])
   
     for t in range(len(remedios2)):
       model.addCons(r[t+tamanio] >= 0)
@@ -162,11 +165,11 @@ def printSolution():
     print("\nRemedios que van a ser utilizados:\n")
     print ("{:<20} {:<20}".format('Remedio','Cantidad'))
     for i in range(len(r)):
-      	print("{:<20} {:<20}".format(r[i].name, model.getVal(r[i])))
+      print("{:<20} {:<20}".format(r[i].name, model.getVal(r[i])))
     print("\n")
     print("La cantidad de remedios distintos utilizados:", model.getObjVal())
     print("\n***************************************************************\n")
-	
+
   
 if __name__ == '__main__':
     readFiles()
