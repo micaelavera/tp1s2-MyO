@@ -11,7 +11,7 @@ constraints = []
 
 def readFiles():
     farmacia = input("Ingrese el nombre del archivo y su extensión. Por ejemplo: farma01.in\n")
-    remedio = input("Ingrese el nombre del archivo del nuevo remedio y su extensión. Por ejemplo: remedio01.in\n")
+    remedio = input("\nIngrese el nombre del archivo del nuevo remedio y su extensión. Por ejemplo: remedio01.in\n")
 
     Coctel(farmacia, remedio)
 
@@ -22,7 +22,7 @@ def Coctel(farmacia, remedio):
 def readTxtPharmacy(file):
     try:
         with open(file, 'r') as archivo:
-            print("Leyendo archivo " + file + "...\n")
+            print("\nLeyendo archivo " + file + "...\n")
 
             lines = archivo.readlines()
             passDrugs = False
