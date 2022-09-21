@@ -10,8 +10,8 @@ r = {}
 constraints = []
 
 def readFiles():
-    #farmacia = input("Ingrese el nombre del archivo y su extensión. Por ejemplo: farma01.in.\n")
-    #remedio = input("Ingrese el nombre del archivo del nuevo remedio y su extensión. Por ejemplo: remedio01.in.\n")
+    #farmacia = input("Ingrese el nombre del archivo y su extensión. Por ejemplo: farma01.in\n")
+    #remedio = input("Ingrese el nombre del archivo del nuevo remedio y su extensión. Por ejemplo: remedio01.in\n")
     farmacia = "farma03.in"
     remedio = "remedio03.in"
     Coctel(farmacia, remedio)
@@ -61,7 +61,7 @@ def readTxtPharmacy(file):
             optimize(cantidades)
 
     except IOError:
-        print ("No existe el archivo", archivo)
+        print ("No existe el archivo", file)
 
     finally:
         archivo.close()
@@ -118,7 +118,7 @@ def readTxtRemedio(file):
             optimizeNewRemedy(cantidades2)
 
     except IOError:
-        print ("No existe el archivo", archivo)
+        print ("No existe el archivo", file)
 
     finally:
         archivo.close()
