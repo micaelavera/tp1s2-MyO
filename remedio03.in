@@ -1,0 +1,8 @@
+# Lineas en blanco o comenzadas con "#" deben saltearse
+
+REMEDIOS
+# Remedio: droga cantidad]
+R9: 1 10, 2 40
+r7: 1 20, 2 33, 3 29
+58: 1 20, 2 44
+6: 1 15, 2 20, 3 45
