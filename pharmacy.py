@@ -75,7 +75,6 @@ def optimize(cantidades):
     for t in range(len(remedios)):
       model.addCons(r[t] >= 0)
     
-
     model.setObjective(sum(r[i] for i in range(len(remedios))), "minimize")
 
     model.hideOutput()
@@ -143,14 +142,14 @@ def optimizeNewRemedy(cantidades2):
     printSolution()
 
 def printDrugs(drogas, cant_necesaria):
-    print("Se obtiene las drogas y las cantidades necesarias\n")
+    print("Se obtienen las drogas y las cantidades necesarias\n")
     print ("{:<20} {:<20}".format('Droga','Cantidad necesaria'))
     for i in range(len(drogas)):
       print("{:<20} {:<20}".format(drogas[i], cant_necesaria[i]))
     print("\n")
 
 def printRemedies(t_remedios):
-    print("Se obtiene los remedios y su contenido\n")
+    print("Se obtienen los remedios y su contenido\n")
 
     print ("{:<20} {:<20} {:<20}".format('Remedio', 'Droga', 'Cantidad'))
     for i in range(len(t_remedios)):
