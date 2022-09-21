@@ -118,7 +118,7 @@ def readTxtRemedio(file):
             optimizeNewRemedy(cantidades2)
 
     except IOError:
-        print ("No existe el archivo", file)
+        print ("No existe el archivo", archivo)
 
     finally:
         archivo.close()
