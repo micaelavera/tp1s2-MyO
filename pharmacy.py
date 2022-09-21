@@ -61,7 +61,7 @@ def readTxtPharmacy(file):
             optimize(cantidades)
 
     except IOError:
-        print ("No existe el archivo", archivo)
+        print ("No existe el archivo", file)
 
     finally:
         archivo.close()
@@ -118,7 +118,7 @@ def readTxtRemedio(file):
             optimizeNewRemedy(cantidades2)
 
     except IOError:
-        print ("No existe el archivo", archivo)
+        print ("No existe el archivo", file)
 
     finally:
         archivo.close()
